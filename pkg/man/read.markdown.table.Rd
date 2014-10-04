@@ -9,12 +9,9 @@ read.markdown.table(string)
 \item{string}{contains a table formatted in markdown}
 }
 \description{
-Utilities linked to the translation of text in a column.
-Typically needed when merging two datasets on columns that need to
-be harmonized first.
+Reads a data.frame from a markdown-formatted table in a string
 }
 \examples{
-\dontrun{
 string<-"
 
 | Sepal.Length| Sepal.Width| Petal.Length|
@@ -27,6 +24,5 @@ string<-"
 |          1115.4|         3.9|          1.7|
 "
 (test <- read.markdown.table(string))
-}
 }
 

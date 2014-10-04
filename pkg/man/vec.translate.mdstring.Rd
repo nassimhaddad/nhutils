@@ -14,7 +14,7 @@ vec.translate.mdstring(vec, dict.md)
 Translate a vector using a dictionary table in a markdown string
 }
 \examples{
-\dontrun{
+vector<-c("France", "Luxbg", "Spain", "Gb")
 vec.translate.mdstring(vector)
 dict.md="
 |from   |to     |
@@ -25,6 +25,5 @@ dict.md="
 |Gb     |Great Britain     |
 "
 vec.translate.mdstring(vector, dict.md)
-}
 }
 

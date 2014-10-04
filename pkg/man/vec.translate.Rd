@@ -8,7 +8,7 @@ vec.translate(vec, dict, exact = TRUE)
 \arguments{
 \item{vec}{character vector to be translated}
 
-\item{dict}{data frame used as a dictionary}
+\item{dict}{data frame used as a dictionary based on the first 2 columns}
 
 \item{exact}{whether direct match is done}
 }
@@ -16,11 +16,9 @@ vec.translate(vec, dict, exact = TRUE)
 Note: Parts of the code copied from Christopher Gandrud's DataCombine package.
 }
 \examples{
-\dontrun{
 vec<-c("France", "Luxbg", "Spain", "Gb")
 dict <- data.frame(from = c("Luxbg", "Gb"),
                    to = c("Luxembourg", "Great Britain"))
-vec.translate(vec, dict, exact=T)
-}
+vec.translate(vec, dict, exact=TRUE)
 }
 

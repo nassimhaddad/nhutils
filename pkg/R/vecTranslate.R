@@ -1,6 +1,6 @@
-#' Utilities linked to the translation of text in a column.
-#' Typically needed when merging two datasets on columns that need to
-#' be harmonized first.
+# Utilities linked to the translation of text in a column.
+# Typically needed when merging two datasets on columns that need to
+# be harmonized first.
 
 
 
@@ -9,7 +9,6 @@
 #' @param string contains a table formatted in markdown
 #' @export
 #' @examples
-#' \dontrun{
 #' string<-"
 #'
 #'| Sepal.Length| Sepal.Width| Petal.Length|
@@ -22,7 +21,7 @@
 #'|          1115.4|         3.9|          1.7|
 #'"
 #'(test <- read.markdown.table(string))
-#'}
+#'
 read.markdown.table <- function(string){
   temp <- (strsplit(string, "\n")[[1]])
   temp <- temp[sapply(temp,nchar)>0]
@@ -54,23 +53,22 @@ read.markdown.table <- function(string){
 #' 
 #' Note: Parts of the code copied from Christopher Gandrud's DataCombine package.
 #' @param vec character vector to be translated
-#' @param dict data frame used as a dictionary
+#' @param dict data frame used as a dictionary based on the first 2 columns
 #' @param exact whether direct match is done
 #' @export
 #' @examples
-#' \dontrun{
 #' vec<-c("France", "Luxbg", "Spain", "Gb")
 #' dict <- data.frame(from = c("Luxbg", "Gb"),
 #'                    to = c("Luxembourg", "Great Britain"))
-#' vec.translate(vec, dict, exact=T)
-#'}
+#' vec.translate(vec, dict, exact=TRUE)
+#' 
 vec.translate <- function(vec, dict, exact = TRUE){
   if (!(class(vec) %in% c("character", "factor"))) {
     stop("vec is not a character string or factor. Please convert to a character string or factor and then rerun.")
   }
   
-  if (!(ncol(dict) == 2)&("data.frame" %in% class(dict))){
-    stop("The provided dictionary must be a data.frame with 2 columns.")
+  if (!(ncol(dict) >= 2)&("data.frame" %in% class(dict))){
+    stop("The provided dictionary must be a data.frame with at least 2 columns.")
   }
   
   ReplaceNRows <- nrow(dict)
@@ -96,7 +94,7 @@ vec.translate <- function(vec, dict, exact = TRUE){
 #' @param dict.md string containing a markdown table
 #' @export
 #' @examples
-#' \dontrun{
+#' vector<-c("France", "Luxbg", "Spain", "Gb")
 #' vec.translate.mdstring(vector)
 #'dict.md="
 #'|from   |to     |
@@ -107,7 +105,7 @@ vec.translate <- function(vec, dict, exact = TRUE){
 #'|Gb     |Great Britain     |
 #'"
 #'vec.translate.mdstring(vector, dict.md)
-#'}
+#'
 vec.translate.mdstring <- function(vec, dict.md){
   if (!(class(vec) %in% c("character", "factor"))) {
     stop("vec is not a character string or factor. Please convert to a character string or factor and then rerun.")
@@ -144,7 +142,8 @@ vec.translate.mdstring <- function(vec, dict.md){
 #' @param file file containing a csv with the dictionary
 #' @examples
 #' \dontrun{
-#'vec.translate.csv(vector, file="dict.csv")
+#' vector<-c("France", "Luxbg", "Spain", "Gb")
+#' vec.translate.csv(vector, file="dict.csv")
 #'}
 vec.translate.csv <- function(vec, file){
   if (!(class(vec) %in% c("character", "factor"))) {
@@ -153,8 +152,7 @@ vec.translate.csv <- function(vec, file){
   
   if (!file.exists(file)){
     cat(sprintf("Dictionary file doesn't exist. Creating template as %s.\n", file))
-    dict.raw<-data.frame(from=unique(vec),
-                         to=unique(vec))
+    dict.raw<-create.dict.template(vec)
     write.csv(dict.raw, file=file, row.names=F)
     return(invisible(vec))
   } else{
@@ -163,9 +161,6 @@ vec.translate.csv <- function(vec, file){
   }
 }
 
-
-
-
 #' Translate a vector using a dictionary table in a markdown file.
 #' @param vec character vector to be translated
 #' @param file file containing a markdown table with the dictionary
@@ -173,7 +168,8 @@ vec.translate.csv <- function(vec, file){
 #'
 #' @examples
 #' \dontrun{
-#'vec.translate.md(vector, file="dict.md")
+#' vector<-c("France", "Luxbg", "Spain", "Gb")
+#' vec.translate.md(vector, file="dict.md")
 #'}
 vec.translate.md <- function(vec, file){
   if (!(class(vec) %in% c("character", "factor"))) {
@@ -182,16 +178,19 @@ vec.translate.md <- function(vec, file){
   
   if (!file.exists(file)){
     cat(sprintf("Dictionary file doesn't exist. Creating template as %s.\n", file))
-    dict.raw<-data.frame(from=unique(vec),
-                         to=unique(vec))
-    dict.md <- knitr::kable(dict.raw, format = "markdown", output=F)
-    writeLines(dict.md, file)
+    dict.raw<-create.dict.template(vec)
+    write.md(dict.raw)
     return(invisible(vec))
   } else{
-    dict.md <- readChar(file, file.info(file)$size)
-    dict <- read.markdown.table(dict.md)
+    dict <- read.md(file)
     return(vec.translate(vec, dict, exact=T))
   }
 }
 
-
+#' creates a data frame with unique values
+#' @param vec a vector of strings
+#' 
+create.dict.template<-function(vec){
+  temp<-as.data.frame(table(vec))
+  data.frame(from=temp[,1], to=temp[, 1], freq=temp[, 2])
+}
