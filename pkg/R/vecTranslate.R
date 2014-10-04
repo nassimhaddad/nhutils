@@ -178,7 +178,7 @@ vec.translate.md <- function(vec, file){
   if (!file.exists(file)){
     cat(sprintf("Dictionary file doesn't exist. Creating template as %s.\n", file))
     dict.raw<-create.dict.template(vec)
-    write.md(dict.raw)
+    write.md(dict.raw, file)
     return(invisible(vec))
   } else{
     dict <- read.md(file)
