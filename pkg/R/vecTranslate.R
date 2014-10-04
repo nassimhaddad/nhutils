@@ -113,8 +113,7 @@ vec.translate.mdstring <- function(vec, dict.md){
   
   if (missing(dict.md)){
     cat("No dictionary specified. You can use the below table as a template:\n\n")
-    dict.raw<-data.frame(from=unique(vec),
-                         to=unique(vec))
+    dict.raw<-create.dict.template(vec)
     cat('dict.md="\n')
     dict.md <- knitr::kable(dict.raw, format = "markdown", output=F)
     for (txt in dict.md){cat(txt);cat("\n")}
