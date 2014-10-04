@@ -1,0 +1,1 @@
+* utilities to match two columns together based on string distances and user input through markdown tables. suggest a few matches in order of the most probable match. include a probability of matching.
