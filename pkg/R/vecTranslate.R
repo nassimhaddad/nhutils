@@ -4,11 +4,10 @@
 
 
 
-#' Reads a data.frame from a markdown-formatted table in a string
+#' @title Reads a data.frame from a markdown-formatted table in a string
 #'
 #' @param string contains a table formatted in markdown
 #' @export
-#'
 #' @examples
 #' \dontrun{
 #' string<-"
@@ -25,11 +24,10 @@
 #'(test <- read.markdown.table(string))
 #'}
 read.markdown.table <- function(string){
-  require(stringr)
   temp <- (strsplit(string, "\n")[[1]])
   temp <- temp[sapply(temp,nchar)>0]
   temp <- strsplit(temp, "\\|")
-  temp <- lapply(temp, function(x)str_trim(x[-1]))
+  temp <- lapply(temp, function(x)stringr::str_trim(x[-1]))
   title_row <- temp[[1]]
   temp[[1]]<-NULL
   temp[[1]]<-NULL
@@ -51,10 +49,13 @@ read.markdown.table <- function(string){
 
 
 
-#' Function 
+#' Translates a vector of characters based on a dictionary
 #' 
 #' 
 #' Note: Parts of the code copied from Christopher Gandrud's DataCombine package.
+#' @param vec character vector to be translated
+#' @param dict data frame used as a dictionary
+#' @param exact whether direct match is done
 #' @export
 #' @examples
 #' \dontrun{
@@ -91,6 +92,8 @@ vec.translate <- function(vec, dict, exact = TRUE){
 
 #' Translate a vector using a dictionary table in a markdown string
 #' 
+#' @param vec character vector to be translated
+#' @param dict.md string containing a markdown table
 #' @export
 #' @examples
 #' \dontrun{
@@ -138,7 +141,8 @@ vec.translate.mdstring <- function(vec, dict.md){
 
 
 #' Translate a vector using a dictionary table in a csv file.
-#'
+#' @param vec character vector to be translated
+#' @param file file containing a csv with the dictionary
 #' @examples
 #' \dontrun{
 #'vec.translate.csv(vector, file="dict.csv")
@@ -164,7 +168,8 @@ vec.translate.csv <- function(vec, file){
 
 
 #' Translate a vector using a dictionary table in a markdown file.
-#' 
+#' @param vec character vector to be translated
+#' @param file file containing a markdown table with the dictionary
 #' @export
 #'
 #' @examples

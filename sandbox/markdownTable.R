@@ -5,11 +5,10 @@ kable(head(iris[,rep(1:3,1)]), format = "markdown")
 
 #'
 read.markdown.table <- function(string){
-  require(stringr)
   temp <- (strsplit(string, "\n")[[1]])
   temp <- temp[sapply(temp,nchar)>0]
   temp <- strsplit(temp, "\\|")
-  temp <- lapply(temp, function(x)str_trim(x[-1]))
+  temp <- lapply(temp, function(x)stringr::str_trim(x[-1]))
   title_row <- temp[[1]]
   temp[[1]]<-NULL
   temp[[1]]<-NULL

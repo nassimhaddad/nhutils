@@ -5,6 +5,11 @@
 \usage{
 vec.translate.csv(vec, file)
 }
+\arguments{
+\item{vec}{character vector to be translated}
+
+\item{file}{file containing a csv with the dictionary}
+}
 \description{
 Translate a vector using a dictionary table in a csv file.
 }

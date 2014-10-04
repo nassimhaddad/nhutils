@@ -1,11 +1,13 @@
 Package: nhutils
 Type: Package
-Title: What the package does (short line)
+Title: Utilities for data manipulation and cleaning
 Version: 1.0
 Date: 2014-10-04
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Nassim Haddad
+Maintainer: Nassim Haddad <nassim.hd@gmail.com>
+Description: Utilities for data manipulation and cleaning.
+License: file LICENSE
 Suggests:
     knitr
+Imports:
+    stringr

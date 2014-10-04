@@ -1,7 +1,6 @@
 
 #'
 read.markdown.table <- function(string){
-  require(stringr)
   temp <- (strsplit(string, "\n")[[1]])
   temp <- temp[sapply(temp,nchar)>0]
   temp <- strsplit(temp, "\\|")

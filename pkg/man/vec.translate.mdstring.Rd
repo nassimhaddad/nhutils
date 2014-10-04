@@ -5,6 +5,11 @@
 \usage{
 vec.translate.mdstring(vec, dict.md)
 }
+\arguments{
+\item{vec}{character vector to be translated}
+
+\item{dict.md}{string containing a markdown table}
+}
 \description{
 Translate a vector using a dictionary table in a markdown string
 }
