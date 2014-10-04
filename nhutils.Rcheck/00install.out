@@ -1,9 +1,0 @@
-* installing *source* package ‘nhutils’ ...
-** R
-** preparing package for lazy loading
-** help
-Warning: /Users/haddanas/Documents/Data Projects/nhutils/nhutils.Rcheck/00_pkg_src/nhutils/man/nhutils-package.Rd:33: All text must be in a section
-Warning: /Users/haddanas/Documents/Data Projects/nhutils/nhutils.Rcheck/00_pkg_src/nhutils/man/nhutils-package.Rd:34: All text must be in a section
-Error : /Users/haddanas/Documents/Data Projects/nhutils/nhutils.Rcheck/00_pkg_src/nhutils/man/vec.translate.md.Rd: Sections \title, and \name must exist and be unique in Rd files
-ERROR: installing Rd objects failed for package ‘nhutils’
-* removing ‘/Users/haddanas/Documents/Data Projects/nhutils/nhutils.Rcheck/nhutils’
