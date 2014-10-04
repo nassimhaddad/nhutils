@@ -26,4 +26,7 @@ dict.md="
 "
 vec.translate.mdstring(vector, dict.md)
 }
+\seealso{
+\code{\link{vec.translate.md}}, \code{\link{vec.translate.csv}}
+}
 

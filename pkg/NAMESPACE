@@ -3,5 +3,6 @@
 export(read.markdown.table)
 export(read.md)
 export(vec.translate)
+export(vec.translate.csv)
 export(vec.translate.md)
 export(vec.translate.mdstring)

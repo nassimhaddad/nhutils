@@ -14,9 +14,10 @@ vec.translate.md(vec, file)
 Translate a vector using a dictionary table in a markdown file.
 }
 \examples{
-\dontrun{
 vector<-c("France", "Luxbg", "Spain", "Gb")
 vec.translate.md(vector, file="dict.md")
 }
+\seealso{
+\code{\link{vec.translate.csv}}, \code{\link{vec.translate.mdstring}}
 }
 

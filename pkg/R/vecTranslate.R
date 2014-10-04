@@ -93,6 +93,7 @@ vec.translate <- function(vec, dict, exact = TRUE){
 #' @param vec character vector to be translated
 #' @param dict.md string containing a markdown table
 #' @export
+#' @seealso \code{\link{vec.translate.md}}, \code{\link{vec.translate.csv}}
 #' @examples
 #' vector<-c("France", "Luxbg", "Spain", "Gb")
 #' vec.translate.mdstring(vector)
@@ -139,11 +140,12 @@ vec.translate.mdstring <- function(vec, dict.md){
 #' Translate a vector using a dictionary table in a csv file.
 #' @param vec character vector to be translated
 #' @param file file containing a csv with the dictionary
+#' @seealso \code{\link{vec.translate.md}}, \code{\link{vec.translate.mdstring}}
+#' @export
 #' @examples
-#' \dontrun{
 #' vector<-c("France", "Luxbg", "Spain", "Gb")
 #' vec.translate.csv(vector, file="dict.csv")
-#'}
+#' 
 vec.translate.csv <- function(vec, file){
   if (!(class(vec) %in% c("character", "factor"))) {
     stop("vec is not a character string or factor. Please convert to a character string or factor and then rerun.")
@@ -164,12 +166,11 @@ vec.translate.csv <- function(vec, file){
 #' @param vec character vector to be translated
 #' @param file file containing a markdown table with the dictionary
 #' @export
-#'
+#' @seealso \code{\link{vec.translate.csv}}, \code{\link{vec.translate.mdstring}}
 #' @examples
-#' \dontrun{
 #' vector<-c("France", "Luxbg", "Spain", "Gb")
 #' vec.translate.md(vector, file="dict.md")
-#'}
+#' 
 vec.translate.md <- function(vec, file){
   if (!(class(vec) %in% c("character", "factor"))) {
     stop("vec is not a character string or factor. Please convert to a character string or factor and then rerun.")

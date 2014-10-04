@@ -14,9 +14,10 @@ vec.translate.csv(vec, file)
 Translate a vector using a dictionary table in a csv file.
 }
 \examples{
-\dontrun{
 vector<-c("France", "Luxbg", "Spain", "Gb")
 vec.translate.csv(vector, file="dict.csv")
 }
+\seealso{
+\code{\link{vec.translate.md}}, \code{\link{vec.translate.mdstring}}
 }
 
