@@ -114,12 +114,11 @@ vec.translate.mdstring <- function(vec, dict.md){
   }
   
   if (missing(dict.md)){
-    require(knitr)
     cat("No dictionary specified. You can use the below table as a template:\n\n")
     dict.raw<-data.frame(from=unique(vec),
                          to=unique(vec))
     cat('dict.md="\n')
-    dict.md <- kable(dict.raw, format = "markdown", output=F)
+    dict.md <- knitr::kable(dict.raw, format = "markdown", output=F)
     for (txt in dict.md){cat(txt);cat("\n")}
     cat('"')
     call<-as.character(sys.call())
@@ -182,11 +181,10 @@ vec.translate.md <- function(vec, file){
   }
   
   if (!file.exists(file)){
-    require(knitr)
     cat(sprintf("Dictionary file doesn't exist. Creating template as %s.\n", file))
     dict.raw<-data.frame(from=unique(vec),
                          to=unique(vec))
-    dict.md <- kable(dict.raw, format = "markdown", output=F)
+    dict.md <- knitr::kable(dict.raw, format = "markdown", output=F)
     writeLines(dict.md, file)
     return(invisible(vec))
   } else{

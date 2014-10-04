@@ -7,7 +7,6 @@ Author: Nassim Haddad
 Maintainer: Nassim Haddad <nassim.hd@gmail.com>
 Description: Utilities for data manipulation and cleaning.
 License: file LICENSE
-Suggests:
-    knitr
 Imports:
-    stringr
+    stringr,
+    knitr
